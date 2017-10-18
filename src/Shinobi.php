@@ -2,7 +2,7 @@
 
 namespace Caffeinated\Shinobi;
 
-use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\Shinobi\Models\Poaprol;
 use Illuminate\Contracts\Auth\Guard;
 
 class Shinobi
@@ -34,7 +34,7 @@ class Shinobi
         if ($this->auth->check()) {
             return $this->auth->user()->can($permissions);
         } else {
-            $guest = Role::whereSlug('guest')->first();
+            $guest = Poaprol::whereSlug('guest')->first();
 
             if ($guest) {
                 return $guest->can($permissions);
@@ -56,7 +56,7 @@ class Shinobi
         if ($this->auth->check()) {
             return $this->auth->user()->canAtLeast($permissions);
         } else {
-            $guest = Role::whereSlug('guest')->first();
+            $guest = Poaprol::whereSlug('guest')->first();
 
             if ($guest) {
                 return $guest->canAtLeast($permissions);

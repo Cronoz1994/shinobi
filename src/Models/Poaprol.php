@@ -2,24 +2,30 @@
 
 namespace Caffeinated\Shinobi\Models;
 
-use Config;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
-{
+class Poaprol extends Model
+{   
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'POAPROL';
+
+    /**
+     * The custom id table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id_rol';
+
     /**
      * The attributes that are fillable via mass assignment.
      *
      * @var array
      */
     protected $fillable = ['name', 'slug', 'description', 'special'];
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'roles';
 
     /**
      * The cache tag used by the model.
@@ -35,17 +41,17 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(config('auth.model') ?: config('auth.providers.users.model'))->withTimestamps();
+        return $this->belongsToMany('Siseg\Models\Poampers', 'id_rol')->withTimestamps();
     }
 
     /**
-     * Roles can have many permissions.
+     * Roles can have many permissions (accions).
      *
      * @return Model
      */
     public function permissions()
     {
-        return $this->belongsToMany('\Caffeinated\Shinobi\Models\Permission')->withTimestamps();
+        return $this->belongsToMany('\Caffeinated\Shinobi\Models\Poapacc', 'POAPROLA', 'id_rol', 'id_acc')->withTimestamps();
     }
 
     /**

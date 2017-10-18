@@ -2,7 +2,7 @@
 
 namespace Caffeinated\Shinobi\Middleware;
 
-use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\Shinobi\Models\Poaprol;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
@@ -43,7 +43,7 @@ class UserHasPermission
                 abort(403, 'Unauthorized action.');
             }
         } else {
-            $guest = Role::whereSlug('guest')->first();
+            $guest = Poaprol::whereSlug('guest')->first();
 
             if ($guest) {
                 if (!$guest->can($permissions)) {

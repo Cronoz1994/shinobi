@@ -4,8 +4,23 @@ namespace Caffeinated\Shinobi\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
-{
+class Poapacc extends Model
+{   
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'POAPACC';
+
+    /**
+     * The custom id table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id_acc';
+
+
     /**
      * The attributes that are fillable via mass assignment.
      *
@@ -14,20 +29,13 @@ class Permission extends Model
     protected $fillable = ['name', 'slug', 'description'];
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'permissions';
-
-    /**
      * Permissions can belong to many roles.
      *
      * @return Model
      */
     public function roles()
     {
-        return $this->belongsToMany('\Caffeinated\Shinobi\Models\Role')->withTimestamps();
+        return $this->belongsToMany('\Caffeinated\Shinobi\Models\Poaprol', 'POAPROLA', 'id_acc', 'id_rol')->withTimestamps();
     }
 
     /**
